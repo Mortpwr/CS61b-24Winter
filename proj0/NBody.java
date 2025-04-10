@@ -38,7 +38,7 @@ class NBody {
                 yForces[i] = plist[i].calcNetForceExertedByY(plist);
             }
             for(int i = 0; i < plist.length; ++i){
-                plist.update(dt, xForces[i], yForces[i]);
+                plist[i].update(dt, xForces[i], yForces[i]);
             }
             StdDraw.picture(0, 0, img);
             for(Planet p: plist){
