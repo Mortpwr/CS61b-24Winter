@@ -1,5 +1,5 @@
 public class NBody {
-    public NBody();
+    public NBody(){};
     public static double readRadius(String path) {
         In in = new In(path);
         int number = in.readInt();
