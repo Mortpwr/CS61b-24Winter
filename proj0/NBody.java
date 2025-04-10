@@ -1,4 +1,5 @@
-class NBody {
+public class NBody {
+    public NBody();
     public static double readRadius(String path) {
         In in = new In(path);
         int number = in.readInt();
@@ -7,10 +8,10 @@ class NBody {
     }
     public static Planet[] readPlanets(String path){
         In in = new In(path);
-        in.readInt();
+        int number = in.readInt();
         in.readDouble();
-        Planet[] plist = new Planet[5]; //using new to define a new object
-        for(int i = 0; i < 5; ++i){
+        Planet[] plist = new Planet[number]; //using new to define a new object
+        for(int i = 0; i < number; ++i){
              plist[i] = new Planet(in.readDouble(),  in.readDouble(),  in.readDouble(), in.readDouble(), in.readDouble(), in.readString());
         }
         return plist;

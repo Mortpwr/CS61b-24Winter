@@ -1,5 +1,5 @@
-class Planet {
-    public static double G = 6.67e-11;
+public class Planet {
+    private static double G = 6.67e-11;
     public double xxPos;
     public double yyPos;
     public double xxVel;
@@ -28,7 +28,7 @@ class Planet {
         double distance = Math.sqrt(dx*dx + dy*dy);
         return distance;
     }
-    public boolean equals(Planet p) {
+    private boolean equals(Planet p) {
         if (this.xxPos == p.xxPos && this.yyPos == p.yyPos && this.mass == p.mass) {
             return true;
         }
@@ -78,7 +78,7 @@ class Planet {
         }
         return sum;
     }
-    public double calcAcce(double f){
+    private double calcAcce(double f){
         return f / this.mass;
     }
     public void update(double dt, double fx, double fy) {
