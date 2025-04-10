@@ -31,8 +31,8 @@ class NBody {
         }
         StdDraw.enableDoubleBuffering();
         for(int t = 0; t <= T;){
-            int[] xForces = new int[plist.length];
-            int[] yForces = new int[plist.length];
+            double[] xForces = new double[plist.length];
+            double[] yForces = new double[plist.length];
             for(int i = 0; i < plist.length; ++i){
                 xForces[i] = plist[i].calcNetForceExertedByX(plist);
                 yForces[i] = plist[i].calcNetForceExertedByY(plist);
