@@ -30,7 +30,7 @@ class NBody {
            p.draw();
         }
         StdDraw.enableDoubleBuffering();
-        for(int t = 0; t <= T;){
+        for(double t = 0; t <= T;){
             double[] xForces = new double[plist.length];
             double[] yForces = new double[plist.length];
             for(int i = 0; i < plist.length; ++i){
