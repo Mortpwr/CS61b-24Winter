@@ -82,16 +82,48 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        class inner_func{
+            public boolean search(IntList A, IntList B){
+                if(A == null){
+                    return false;
+                }
+                else {
+                    if (A.rest == null) {
+                        A.rest = B;
+                        return true;
+                    }
+                    return search(A.rest, B);
+                }
+            }
+        }
+        inner_func f = new inner_func();
+        if(f.search(A, B)){
+            return A;
+        }
+        else{
+            return B;
+        }
     }
-
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if (A == null) {
+            return B;
+        }
+        else {
+            IntList a_b = new IntList(A.first, null);
+            IntList ptr = a_b;
+            while (A.rest != null){
+                ptr.rest = new IntList(A.rest.first, null);
+                A = A.rest;
+                ptr = ptr.rest;
+            }
+            ptr.rest = B;
+            return a_b;
+        }
     }
 
 
