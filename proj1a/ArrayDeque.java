@@ -1,33 +1,31 @@
 public class ArrayDeque<T> {
-    public int nowsize = 1;
-    public int size = 8;
-    public int first = 0;
-    public int last = 0;
-    public T[] initialarrays = (T[]) new Object[size];
+    private int nowsize = 0;
+    private int size = 8;
+    private int first = 0;
+    private int last = 0;
+    private T[] initialarrays = (T[]) new Object[size];
     public ArrayDeque(){}
-    public void resize() {
-        T[] newarraylist = (T[]) new Object[size * 2];
-        if (this.first != 0){
-            System.arraycopy(initialarrays, this.size + this.first, newarraylist, this.size * 2 + this.first, -this.first);
+    private void resize() {
+        int dsize = this.size * 2;
+        T[] newarraylist = (T[]) new Object[dsize];
+        for(int i = 0; i < this.nowsize; i++){
+            newarraylist[(this.first + i) % dsize] = this.initialarrays[(first + i) % this.size];
         }
-        System.arraycopy(initialarrays, 1, newarraylist, 1, this.last);
-        this.size = size * 2;
-        this.initialarrays = newarraylist;
     }
     public void addFirst(T item) {
-        if(this.nowsize == this.initialarrays.length - 1) {
+        if(this.nowsize == this.size) {
             this.resize();
         }
         this.first--;
-        this.initialarrays[this.size + this.first] = item;
+        this.initialarrays[this.first % this.size] = item;
         this.nowsize++;
     }
     public void addLast(T item) {
-        if(this.nowsize == this.initialarrays.length - 1) {
+        if(this.nowsize == this.size) {
             this.resize();
         }
         this.last++;
-        this.initialarrays[this.last] = item;
+        this.initialarrays[this.last % this.size] = item;
         this.nowsize++;
     }
     public boolean isEmpty() {
@@ -37,28 +35,38 @@ public class ArrayDeque<T> {
         return this.nowsize;
     }
     public void printDeque() {
-        for(int i = this.first + this.size; i < this.size; i++) {
-            System.out.print(this.initialarrays[i] + " ");
+        for(int i = 0; i < this.nowsize; i++) {
+            System.out.print(this.initialarrays[(this.first + i) % this.size] + " ");
         }
-        for(int i = 1; i < this.last; i++) {
-            System.out.print(this.initialarrays[i] + " ");
-        }
+    }
+    private boolean pointerHelper(){
+       return this.first >= this.last;
     }
     public T removeFirst() {// may oversize
-        T item = this.initialarrays[this.size + this.first];
-        this.initialarrays[this.size + this.first] = null;
-        this.first++;
-        this.nowsize--;
-        return item;
+        if(this.pointerHelper()) {
+            return null;
+        }
+        else{
+            T item = this.initialarrays[this.first % this.size];
+            this.initialarrays[this.first % size] = null;
+            this.first++;
+            this.nowsize--;
+            return item;
+        }
     }
     public T removeLast() { // may oversize
-        T item = this.initialarrays[this.last];
-        this.initialarrays[this.last] = null;
-        this.last--;
-        this.nowsize--;
-        return item;
+       if(this.pointerHelper()) {
+           return null;
+       }
+       else{
+            T item = this.initialarrays[this.last % this.size];
+            this.initialarrays[this.last % this.size] = null;
+            this.last--;
+            this.nowsize--;
+            return item;
+       }
     }
     public T get(int index) {
-        return this.initialarrays[this.size + this.first + index];
+        return this.initialarrays[(this.first + index) % this.size];
     }
 }

@@ -1,13 +1,8 @@
 public class LinkedListDeque<T> {
-    public int size;
-    public ItemNode head = new ItemNode();
+    private int size;
+    private ItemNode head = new ItemNode();
     public LinkedListDeque() {
         this.size = 1;
-    }
-    public LinkedListDeque(T item) {
-        this.size = 1;
-        this.head.next = new ItemNode(item, head, null);
-        this.head.prev = head.next;
     }
     public void addFirst(T item){
         ItemNode newNode = new ItemNode(item, head, head.next);
@@ -27,7 +22,7 @@ public class LinkedListDeque<T> {
     public int size(){
         return this.size - 1;
     }
-    public void printHelper(int length, ItemNode head){
+    private void printHelper(int length, ItemNode head){
         if(length > 0){
             System.out.print(head.item + " ");
             printHelper(length - 1, head.next);
@@ -39,29 +34,29 @@ public class LinkedListDeque<T> {
     }
     public T removeFirst(){
         if(this.isEmpty()){
-            T item =  this.head.next.item;
-            this.head.next = null;
+            return null;
+        }
+        else {
+            T item = this.head.next.item;
+            ItemNode second = this.head.next.next;
+            this.head.next = second;
+            second.prev = this.head;
+            this.size--;
             return item;
         }
-        T item = this.head.next.item;
-        ItemNode second = this.head.next.next;
-        this.head.next = second;
-        second.prev = this.head;
-        this.size--;
-        return item;
     }
     public T removeLast(){
-        if(this.isEmpty()){
-            T item =  this.head.prev.item;
-            this.head.prev = null;
-            return item;
+        if(this.isEmpty()) {
+           return null;
         }
-        T item = this.head.prev.item;
-        ItemNode second = this.head.prev.prev;
-        this.head.prev = second;
-        second.next = this.head;
-        this.size--;
-        return item;
+       else {
+            T item = this.head.prev.item;
+            ItemNode second = this.head.prev.prev;
+            this.head.prev = second;
+            second.next = this.head;
+            this.size--;
+            return item;
+       }
     }
     public T get(int index){
         ItemNode first = this.head.next;
@@ -75,7 +70,7 @@ public class LinkedListDeque<T> {
         }
         return null;
     }
-    public T getRecursiveHelper(ItemNode node, int index){
+    private T getRecursiveHelper(ItemNode node, int index){
         if(index == 0){
             return node.item;
         }
