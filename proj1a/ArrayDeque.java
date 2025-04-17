@@ -11,7 +11,7 @@ public class ArrayDeque<T> {
         return (divisor % dividend + dividend) % dividend;
     }
     private void resize(boolean mode) {
-        if(mode) {
+        if (mode) {
             int dsize = this.size * 2;
             T[] newarraylist = (T[]) new Object[dsize];
             for (int i = 0; i < this.nowsize; i++) {
