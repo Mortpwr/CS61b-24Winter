@@ -10,19 +10,32 @@ public class ArrayDeque<T> {
     private int posModular(int dividend, int divisor) {
         return (divisor % dividend + dividend) % dividend;
     }
-    private void resize() {
-        int dsize = this.size * 2;
-        T[] newarraylist = (T[]) new Object[dsize];
-        for (int i = 0; i < this.nowsize; i++) {
-            newarraylist[posModular(dsize, first + i)] = this.initialarrays[posModular(this.size, first + i)];
+    private void resize(boolean mode) {
+        if(mode) {
+            int dsize = this.size * 2;
+            T[] newarraylist = (T[]) new Object[dsize];
+            for (int i = 0; i < this.nowsize; i++) {
+                newarraylist[posModular(dsize, first + i)] =
+                        this.initialarrays[posModular(this.size, first + i)];
+            }
+            this.size = dsize;
+            this.initialarrays = newarraylist;
+        } else {
+            int hsize = this.size / 2;
+            T[] newarraylist = (T[]) new Object[hsize];
+            for (int i = 0; i < this.nowsize; i++) {
+                newarraylist[posModular(hsize, first + i)] =
+                        this.initialarrays[posModular(this.size, first + i)];
+            }
+            this.size = hsize;
+            this.initialarrays = newarraylist;
         }
-        this.size = dsize;
-        this.initialarrays = newarraylist;
+
     }
 
     public void addFirst(T item) {
         if (this.nowsize == this.size) {
-            this.resize();
+            this.resize(true);
         }
         if (!(this.first == this.last) || !(this.nowsize == 0)) {
             this.first--;
@@ -34,7 +47,7 @@ public class ArrayDeque<T> {
 
     public void addLast(T item) {
         if (this.nowsize == this.size) {
-            this.resize();
+            this.resize(true);
         }
         if (!(this.first == this.last) || !(this.nowsize == 0)) {
             this.last++;
@@ -65,6 +78,9 @@ public class ArrayDeque<T> {
         if (this.pointerHelper()) {
             return null;
         } else {
+            if (this.nowsize < this.size * 0.25) {
+                resize(false);
+            }
             T item = this.initialarrays[posModular(this.size, this.first)];
             this.initialarrays[posModular(this.size, this.first)] = null;
             this.nowsize--;
@@ -77,6 +93,9 @@ public class ArrayDeque<T> {
         if (this.pointerHelper()) {
             return null;
         } else {
+            if (this.nowsize < this.size * 0.25) {
+                resize(false);
+            }
             T item = this.initialarrays[posModular(this.size, this.last)];
             this.initialarrays[posModular(this.size, this.last)] = null;
             this.nowsize--;
