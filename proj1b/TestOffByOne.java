@@ -13,7 +13,7 @@ public class TestOffByOne extends TestPalindrome {
     }
     @Test
     public void testOffByOne2() {
-        assertTrue(palindrome.isPalindrome("aB", offByOne));
+        assertTrue(palindrome.isPalindrome("acbb", offByOne));
     }
     @Test
     public void testOffByOne3() {
@@ -23,8 +23,11 @@ public class TestOffByOne extends TestPalindrome {
     public void testOffByOne4() {
         assertTrue(palindrome.isPalindrome("a", offByOne));
     }
+    @Test
     public void testOffByOne5() {
         assertTrue(palindrome.isPalindrome("ab", offByOne));
         assertTrue(palindrome.isPalindrome("ba", offByOne));
+        assertFalse(palindrome.isPalindrome("Ab", offByOne));
+        assertFalse(palindrome.isPalindrome("Ba", offByOne));
     }
 }

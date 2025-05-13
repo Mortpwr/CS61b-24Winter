@@ -29,7 +29,11 @@ public class TestPalindrome {
     }
     @Test
     public void testisPalindrome4() {
-        assertTrue(palindrome.isPalindrome("aA"));
+        assertTrue(palindrome.isPalindrome("ABCCBA"));
+    }
+    @Test
+    public void testisPalindrome5() {
+        assertFalse(palindrome.isPalindrome("DdDdDd"));
     }
 
 }
