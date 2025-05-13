@@ -1,6 +1,3 @@
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-
 public class Palindrome {
     public Deque<Character> wordToDeque(String word) {
         Deque<Character> deque = new LinkedListDeque<>();
