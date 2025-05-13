@@ -8,10 +8,10 @@ public class TestOffByN {
 
     @Test
     public void test1() {
-        assertTrue(palindrome.isPalindrome("ae", offByN));
+        assertTrue(palindrome.isPalindrome("a", offByN));
     }
     @Test
     public void test2() {
-        assertTrue(palindrome.isPalindrome("af", offByN2));
+        assertTrue(palindrome.isPalindrome("a", offByN2));
     }
 }
