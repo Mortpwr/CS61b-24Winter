@@ -30,4 +30,9 @@ public class TestOffByOne extends TestPalindrome {
         assertFalse(palindrome.isPalindrome("Ab", offByOne));
         assertFalse(palindrome.isPalindrome("Ba", offByOne));
     }
+    @Test
+    public void testOffByOne6() {
+        assertTrue(palindrome.isPalindrome("%&", offByOne));
+        assertFalse(palindrome.isPalindrome("<>", offByOne));
+    }
 }

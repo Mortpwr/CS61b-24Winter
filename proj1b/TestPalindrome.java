@@ -34,6 +34,8 @@ public class TestPalindrome {
     @Test
     public void testisPalindrome5() {
         assertFalse(palindrome.isPalindrome("DdDdDd"));
+        assertFalse(palindrome.isPalindrome("<><>"));
+        assertTrue(palindrome.isPalindrome("$<<<<<<$"));
     }
 
 }
