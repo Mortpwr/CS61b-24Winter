@@ -36,6 +36,8 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("DdDdDd"));
         assertFalse(palindrome.isPalindrome("<><>"));
         assertTrue(palindrome.isPalindrome("$<<<<<<$"));
+        assertFalse(palindrome.isPalindrome("Aa"));
+        assertFalse(palindrome.isPalindrome("aA"));
     }
 
 }
